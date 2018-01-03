@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Shopping Cart!</title>
 </head>
+
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -29,8 +31,10 @@
             <a href="#" class="view-cart" data-toggle="dropdown" role="button">Shopping Cart <i class="fa fa-shopping-cart"></i></a>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
   </nav>
 
   <div class="page-header">
@@ -49,7 +53,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" data-name="glass" data-price="68">
+          <div class="card item" data-name="glass" data-price="68" data-freq = '1'>
             <div class="pricebox">
               <p class="price"> $68 </p>
             </div>
@@ -65,7 +69,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="pencils" data-price="3">
+          <div class="card item" item data-name="pencils" data-price="3" data-freq = '1'>
             <div class="pricebox">
               <p class="price"> $3 </p>
             </div>
@@ -81,7 +85,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="kinfolk" data-price="21">
+          <div class="card item" item data-name="kinfolk" data-price="21" data-freq = '1'>
             <div class="pricebox">
               <p class="price"> $21 </p>
             </div>
@@ -100,7 +104,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="book" data-price="25">
+          <div class="card item" item data-name="book" data-price="25" data-freq = '1'>
             <div class="pricebox">
               <p class="price"> $25 </p>
             </div>
@@ -116,7 +120,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="pipe" data-price="124">
+          <div class="card item" item data-name="pipe" data-price="124" data-freq = '1'>
             <div class="pricebox">
               <p class="price"> $124 </p>
             </div>
@@ -132,7 +136,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="stool" data-price="92">
+          <div class="card item" item data-name="stool" data-price="92" data-freq = '1'>
             <div class="pricebox">
               <p class="price"> $92 </p>
             </div>
@@ -151,9 +155,12 @@
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
   <script id="cartinfo" type="text/x-handlebars-template">
-    <div class = '{{id}}'>{{name}} -  ${{price}}</div>
+    <!-- <div class='container'> -->
+      <div class='{{id}}'>({{freq}}){{name}} - ${{price}}<button class='btn remove'><i class="fa fa-minus" aria-hidden="true"></i></button></div>
+    <!-- </div> -->
   </script>
   <script type="text/javascript" src="script.js"></script>
 
 </body>
+
 </html>
