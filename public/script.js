@@ -1,8 +1,9 @@
-// an array with all of our cart items
-var cart = [];
+var cart = []; // an array with all of our cart items
 var idgenerator = 0;
-var freq =1;
 var total = 0;
+var freq = 1;
+var isIn = true;
+// var freq = $(this).closest('.card.item').data().freq;
 var source = $('#cartinfo').html();
 var template = Handlebars.compile(source);
 var updateCart = function() {
@@ -22,20 +23,36 @@ var updateCart = function() {
   // Remember to empty the "cart div" before you re-add all the item elements.
 }
 
-var addItem = function(item) {
+function findItem(itemName) {
   for (let i = 0; i < cart.length; i++) {
-    if (item.freq==1){
-      if (cart[i].name == item.name) {
-        item.freq++;
-        cart.splice(i, 1);
-      }
+    if (itemName == cart[i].name) {
+      return cart[i];
     }
-    else{}
   }
-  cart.push(item);
+  return null;
 
-  // adds item AND checks frequency of items inserting it into key 'freq' of item object.
+  // return -1 if the item is not in the list
+  // return i
 }
+var addItem = function(name,id,price) {
+  var item = findItem(name);
+
+  if (item == null) {
+    var newItem = {
+      id: id,
+      name: name,
+      price: price
+    };
+    cart.push(newItem);
+    newItem.freq = freq;
+  } else {
+      item.freq++;
+  }
+
+}
+}
+// adds item AND checks frequency of items inserting it into key 'freq' of item object.
+
 
 var clearCart = function() {
   cart = [];
@@ -54,11 +71,7 @@ $('.add-to-cart').on('click', function() {
   var name = $(this).closest('.card.item').data().name;
   var price = $(this).closest('.card.item').data().price;
   var id = idgenerator++;
-  var item = {
-    id: id,
-    name: name,
-    price: price
-  };
+
 
   // TODO: get the "item" object from the page
   addItem(item);
