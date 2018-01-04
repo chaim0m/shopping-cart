@@ -1,3 +1,13 @@
+var STORAGE_ID = 'shoppingCart';
+var saveToLocalStorage = function () {
+    localStorage.setItem(STORAGE_ID, JSON.stringify(cart));
+}
+// Get filled array or empty array if none exists from LS
+var getFromLocalStorage = function () {
+    return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+}
+// Populating cart from LS
+var cart = getFromLocalStorage();
 var cart = []; // an array with all of our cart items
 // var idgenerator = 0;
 var total = 0;
@@ -14,7 +24,7 @@ var updateCart = function() {
     var newHTML = template(cart[i]);
     $('.cart-list').append(newHTML);
     total += cart[i].freq * cart[i].price;
-
+    saveToLocalStorage();
   }
   $('.total').append(total);
 
@@ -65,13 +75,16 @@ var addItem = function(item) {
   for (var i = 0; i < cart.length; i++) {
     if (item.name === cart[i].name) {
       cart[i].freq += 1;
+      saveToLocalStorage();
       return;
     }
   }
   cart.push(item)
+  saveToLocalStorage();
 }
 var clearCart = function() {
   cart = [];
+  saveToLocalStorage();
   // totalArray = [];
   $('.cart-list').contents().remove();
   $('.total').contents().remove();
